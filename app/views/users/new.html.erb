@@ -1,0 +1,12 @@
+<% title "Sign up" %>
+
+<p>Already have an account? <%= link_to "Log in", login_path %>.</p>
+
+<div class="row">
+  <div class="span3 well">
+    <%= render 'form' %>
+  </div>
+  <div class="span6">
+    <p>Already have an account? <%= link_to "Log in", login_path, class: "btn" %></p>
+  </div>
+</div>

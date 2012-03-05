@@ -1,0 +1,21 @@
+<%= javascript("designer") %>
+
+<% title @design.name %>
+
+<% content_for :page_header do %>
+	<span class="pull-right">
+		<a onclick="designer.clear()" class="btn">Clear Design</a>
+		<a onclick="log.clear()" class="btn">Clear Log</a>
+		<a onclick="designer.save()" class="btn btn-primary">Save</a>
+	</span>
+	<h1><%= @design.name %></h1>
+<% end %>
+
+<div class="row">
+<span id="designer" class="span9">
+	<script type="text/javascript">$("#designer").designer(<%= @design.width %>, <%= @design.height %>, 20, "<%= @design.name %>", <%= @design.id %>)</script>
+</span>
+<span class="span2">
+	<ul id="log-list"></ul>
+</span>
+</div>

@@ -1,0 +1,24 @@
+<% title "Design" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @design.name %>
+</p>
+<p>
+  <strong>Content:</strong>
+  <%= @design.content %>
+</p>
+<p>
+  <strong>Width:</strong>
+  <%= @design.width %>
+</p>
+<p>
+  <strong>Height:</strong>
+  <%= @design.height %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_design_path(@design) %> |
+  <%= link_to "Destroy", @design, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", designs_path %>
+</p>

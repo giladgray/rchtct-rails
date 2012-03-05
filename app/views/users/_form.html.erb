@@ -1,0 +1,14 @@
+<% labels ||= false %>
+<%= form_for @user ||= User.new, class: "row-fluid" do |f| %>
+  <%= f.error_messages %>
+  <%= if labels then f.label :username, "Username" end %>
+  <%= f.text_field :username, placeholder: "Username" %>
+
+  <%= labels ? f.label(:email, "Email Address") : raw("<br/>") %>
+  <%= f.text_field :email, placeholder: "Email address" %>
+
+  <%= labels ? f.label(:password, "Email Address") : raw("<br/>") %>
+  <%= f.password_field :password, class: "input-small", placeholder: "Password" %>&nbsp;&nbsp;&nbsp;
+  <%= f.password_field :password_confirmation, class: "input-small", placeholder: "Again" %><br/>
+  <%= f.submit @user.new_record? ? "Sign up" : "Update", class: "btn btn-primary" %>
+<% end %>

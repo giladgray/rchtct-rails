@@ -1,0 +1,28 @@
+<% title "Designs" %>
+
+<span class="row">
+<div class="span9">
+<table class="table table-striped">
+    <tr>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Size</th>
+        <th>Date</th>
+    </tr>
+    <% for design in @designs %>
+        <tr>
+            <td><h3><%= link_to design.name, design %></h3></td>
+            <td><%= link_to design.user, design.user %></td>
+            <td><%= design.width %>&times;<%= design.height %></td>
+	        <td><%= Time.at(design.created_at).strftime("%b %-d, %l:%M%P") %></td>
+        </tr>
+    <% end %>
+</table>
+</div>
+<span class="pull-right">
+    <h3>New Design</h3><br/>
+	<div class="well">
+		<%= render "designs/form" %>
+	</div>
+</span>
+</span>

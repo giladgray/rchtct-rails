@@ -1,0 +1,16 @@
+<% title "Log in" %>
+
+<% content_for :page_header do %>
+    <span class="pull-right">
+    Don't have an account? <%= link_to "Sign up!", signup_path, class: "btn btn-primary" %>
+  </span>
+    <h1>Enter Your Credentials</h1>
+<% end %>
+
+<div class="row">
+    <div class="span3 well">
+        <%= render "form" %>
+        <span class="pull-right">
+        </span>
+    </div>
+</div>

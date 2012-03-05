@@ -1,0 +1,11 @@
+one:
+  name: MyString
+  content: MyString
+  width: 1
+  height: 1
+
+two:
+  name: MyString
+  content: MyString
+  width: 1
+  height: 1

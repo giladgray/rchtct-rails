@@ -1,0 +1,12 @@
+<%= form_for(@design ||= Design.new, class: "form-inline") do |f| %>
+    <%= f.error_messages %>
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: "something to remember me by", class: "input-medium" %>
+
+    <%= f.label :width, "Dimensions" %>
+    <%= f.number_field :width, in: 100..1800, step: 50, class: "input-mini" %>
+    <h2 style="display:inline;">&times;</h2>
+    <%= f.number_field :height, in: 100..1800, step: 50, class: "input-mini" %>
+	<br/>
+    <%= f.submit class: "btn btn-primary" %>
+<% end %>
