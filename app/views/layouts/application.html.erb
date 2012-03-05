@@ -5,7 +5,7 @@
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
-	<%= yield(:head) %>
+    <%= yield(:head) %>
 </head>
 <body>
 <div class="navbar navbar-fixed-top">
@@ -13,13 +13,25 @@
         <div class="container">
             <a class="brand" href="/">rchtct</a>
             <ul class="nav pull-right">
-                <li><%= link_to "Login", login_path %></li>
-                <li><%= link_to "Sign Up", signup_path %></li>
+                <li class="divider-vertical"></li>
+                <% if logged_in? %>
+                    <li><%= link_to current_user.username, edit_current_user_path %></li>
+                    <li><%= link_to "Logout", logout_path %></li>
+                <% else %>
+                    <li><%= link_to "Sign Up", signup_path %></li>
+                    <li><%= link_to "Login", login_path %></li>
+                <% end %>
             </ul>
         </div>
     </div>
 </div>
 <div class="container body">
+    <% flash.each do |name, msg| %>
+        <%= content_tag :div, class: "alert #{alert_class(name)}", id: "flash_#{name}" do %>
+            <a class="close" data-dismiss="alert">&times;</a>
+            <%= msg %>
+        <% end %>
+    <% end %>
     <div class="page-header">
         <% if content_for? :page_header %>
             <%= yield(:page_header) %>

@@ -19,4 +19,13 @@ module LayoutHelper
   def javascript(*args)
     content_for(:head) { javascript_include_tag(*args) }
   end
+
+  # determine class for alert box based on name of flash entry
+  def alert_class(name)
+    if name == :alert
+      "alert-error"
+    else #if name == "notice"
+      "alert-success"
+    end
+  end
 end
