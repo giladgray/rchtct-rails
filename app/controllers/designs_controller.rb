@@ -15,7 +15,7 @@ class DesignsController < ApplicationController
   def create
     @design = Design.new(params[:design])
     @design.user = current_user
-
+	puts "saving design as #{@design.user.username}"
     if @design.save
       redirect_to @design, :notice => "Successfully created design."
     else
@@ -29,6 +29,7 @@ class DesignsController < ApplicationController
 
   def update
     @design = Design.find(params[:id])
+	# puts "updating design as #{@design.user.username}"
     if @design.update_attributes(params[:design])
       redirect_to @design, :notice  => "Successfully updated design."
     else

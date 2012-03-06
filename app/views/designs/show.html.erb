@@ -6,9 +6,9 @@ end %>
 
 <% content_for :page_header do %>
     <span class="pull-right">
-	    <% if @design.user == current_user %>
+	    <% # if @design.user == current_user %>
 			<%= link_to icon_text('edit', 'Edit', true), edit_design_path(@design), class: "btn btn-primary" %>
-		<% end %>
+		<% # end %>
         <%= link_to icon_text('share', 'Share'), "#", class: "btn" %>
 	</span>
     <h1 class="exo"><%= @design.name %></h1>
@@ -20,7 +20,7 @@ end %>
 <div id="design-preview">
     <script type="text/javascript">
 	    $("#design-preview").graphpaper(<%= @design.width%>, <%=@design.height%>, 20,
-			    <%= @design.content.nil? ? "null" : @design.content %>);
+			    <%= @design.content.nil? ? "null" : raw(@design.content) %>);
     </script>
 </div>
 <span class="span6">

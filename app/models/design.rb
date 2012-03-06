@@ -1,5 +1,5 @@
 class Design < ActiveRecord::Base
-	attr_accessible :name, :content, :width, :height
+	attr_accessible :name, :content, :width, :height, :user_id
 
 	belongs_to :user
 
