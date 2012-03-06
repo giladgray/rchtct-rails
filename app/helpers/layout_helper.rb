@@ -20,6 +20,10 @@ module LayoutHelper
     content_for(:head) { javascript_include_tag(*args) }
   end
 
+  def icon_text(icon, text, white=false)
+	  content_tag(:i, nil, class: "icon-#{icon}#{white ? " icon-white" : ""}") + " #{text}"
+  end
+
   # determine class for alert box based on name of flash entry
   def alert_class(name)
     if name == :alert

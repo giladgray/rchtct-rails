@@ -1,24 +1,50 @@
 <% title "Design" %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @design.name %>
-</p>
-<p>
-  <strong>Content:</strong>
-  <%= @design.content %>
-</p>
-<p>
-  <strong>Width:</strong>
-  <%= @design.width %>
-</p>
-<p>
-  <strong>Height:</strong>
-  <%= @design.height %>
-</p>
+<% content_for :icon do
+    'file'
+end %>
 
+<% content_for :page_header do %>
+    <span class="pull-right">
+	    <% if @design.user == current_user %>
+			<%= link_to icon_text('edit', 'Edit', true), edit_design_path(@design), class: "btn btn-primary" %>
+		<% end %>
+        <%= link_to icon_text('share', 'Share'), "#", class: "btn" %>
+	</span>
+    <h1 class="exo"><%= @design.name %></h1>
+    <% unless @design.user.nil? %>
+        <h3>by <%= link_to @design.user.username, @design.user %></h3>
+    <% end %>
+<% end %>
+
+<div id="design-preview">
+    <script type="text/javascript">
+	    $("#design-preview").graphpaper(<%= @design.width%>, <%=@design.height%>, 20,
+			    <%= @design.content.nil? ? "null" : @design.content %>);
+    </script>
+</div>
+<span class="span6">
+<a data-toggle="collapse" data-target="#content">
+    Raw Design Content
+</a>
+<div id="content" class="collapse"><%= @design.content %></div>
+</span>
+<span class="span5">
 <p>
-  <%= link_to "Edit", edit_design_path(@design) %> |
-  <%= link_to "Destroy", @design, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", designs_path %>
+    <strong>Width:</strong>
+    <%= @design.width %>
 </p>
+<p>
+    <strong>Height:</strong>
+    <%= @design.height %>
+</p>
+<p>
+    <%= link_to edit_design_path(@design) do %>
+        <i class="icon-edit"></i> Edit
+    <% end %> |
+    <%= link_to @design, :confirm => 'Are you sure?', :method => :delete do %>
+        <i class="icon-fire"></i> Delete
+    <% end %>|
+    <%= link_to "View All", designs_path %>
+</p>
+</span>

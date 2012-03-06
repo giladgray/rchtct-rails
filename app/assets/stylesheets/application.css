@@ -11,22 +11,37 @@
  *= require_self
  *= require_tree .
 */
-
 .container.body {
 	padding-top: 60px;
 }
 
-#designer {
+.designer {
 	border: 1px solid gray;
 	min-height: 400px;
+	display: inline-block;
 }
-
+.navbar .brand.rchtct.exo {
+	font-weight: 700;
+	font-size: 28px;
+	padding: 6px 0 6px 20px;
+}
+.navbar .brand.rchtct.sonsie {
+	font-size: 26px;
+	padding: 6px 0 8px 20px;
+}
 ul#log-list {
+	font-family: 'Share', cursive ;
 	width: 210px;
-	font-size: 10px;
+	font-size: 11px;
 	height: 500px;
 	overflow-y: auto;
 }
 ul#log-list li:first-child {
 	border: 1px solid gray;
+}
+.exo {
+	font-family: 'Exo', sans-serif;
+}
+.sonsie {
+	font-family: 'Sonsie One', cursive;
 }

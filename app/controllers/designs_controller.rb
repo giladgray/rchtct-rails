@@ -9,10 +9,13 @@ class DesignsController < ApplicationController
 
   def new
     @design = Design.new
+    @design.user = current_user
   end
 
   def create
     @design = Design.new(params[:design])
+    @design.user = current_user
+
     if @design.save
       redirect_to @design, :notice => "Successfully created design."
     else

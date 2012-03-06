@@ -1,19 +1,28 @@
-<%= javascript("designer") %>
-
 <% title @design.name %>
 
+<% content_for :icon do 'edit' end %>
+
 <% content_for :page_header do %>
-	<span class="pull-right">
-		<a onclick="designer.clear()" class="btn">Clear Design</a>
-		<a onclick="log.clear()" class="btn">Clear Log</a>
-		<a onclick="designer.save()" class="btn btn-primary">Save</a>
+    <span class="pull-right">
+	    <a onclick="designer.save()" id="save-btn" data-loading-text="Saving..." class="btn btn-primary">
+		    <%= icon_text 'file', 'Save', true %>
+	    </a>
+	    <%= link_to icon_text('ok', 'Done', true), @design, class: "btn btn-success" %>
+	    <!--<%= link_to icon_text('remove', 'Cancel', true), @design, class: "btn btn-warning" %>-->
+        <a onclick="designer.clear()" class="btn">Clear Design</a>
+      		<a onclick="log.clear()" class="btn">Clear Log</a>
 	</span>
-	<h1><%= @design.name %></h1>
+    <h1 class="exo"><%= @design.name %></h1>
 <% end %>
 
 <div class="row">
 <span id="designer" class="span9">
-	<script type="text/javascript">$("#designer").designer(<%= @design.width %>, <%= @design.height %>, 20, "<%= @design.name %>", <%= @design.id %>)</script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("#designer").designer(<%= @design.width %>, <%= @design.height %>, 20, "<%= @design.name %>", <%= @design.id %>);
+			designer.load(<%= raw @design.content %>);
+		});
+	</script>
 </span>
 <span class="pull-right">
 	<ul id="log-list"></ul>

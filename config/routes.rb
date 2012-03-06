@@ -12,6 +12,7 @@ Rchtct::Application.routes.draw do
 	resources :users
 
 	resources :designs
+	match 'designs/:id/save' => 'designs#update'
 
 	root to: "designs#index"
 	# The priority is based upon order of creation:

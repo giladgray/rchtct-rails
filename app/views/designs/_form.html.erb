@@ -1,12 +1,17 @@
 <%= form_for(@design ||= Design.new, class: "form-inline") do |f| %>
     <%= f.error_messages %>
     <%= f.label :name %>
-    <%= f.text_field :name, placeholder: "something to remember me by", class: "input-medium" %>
+    <%= f.text_field :name, placeholder: "what am I?", class: "input-medium" %>
 
     <%= f.label :width, "Dimensions" %>
-    <%= f.number_field :width, in: 100..1800, step: 50, class: "input-mini" %>
+    <%= f.number_field :width, in: 100..700, step: 50, class: "input-mini" %>
     <h2 style="display:inline;">&times;</h2>
-    <%= f.number_field :height, in: 100..1800, step: 50, class: "input-mini" %>
+    <%= f.number_field :height, in: 100..1000, step: 50, class: "input-mini" %>
 	<br/>
-    <%= f.submit class: "btn btn-primary" %>
+	<button type="submit" id="submit" class="btn btn-primary <%= "disabled" unless logged_in? %>"  >
+		<%= icon_text('edit', 'Create Design', true) %>
+	</button>
+	<% unless logged_in? %>
+		<label for="submit"><%= link_to "Login", login_path %> or <%= link_to "sign up", signup_path %> to create <br/>your own designs!</label>
+    <% end %>
 <% end %>
