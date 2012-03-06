@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20120305010539) do
     t.string   "content"
     t.integer  "width"
     t.integer  "height"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
