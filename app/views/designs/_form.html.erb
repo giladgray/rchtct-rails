@@ -8,7 +8,7 @@
     <h2 style="display:inline;">&times;</h2>
     <%= f.number_field :height, in: 100..1000, step: 50, class: "input-mini" %>
 	<br/>
-	<button type="submit" id="submit" class="btn btn-primary <%= "disabled" unless logged_in? %>"  >
+	<button type="submit" id="submit" class="btn btn-primary <%= "disabled" unless logged_in? %>" <%= "disabled" unless logged_in? %> >
 		<%= icon_text('edit', 'Create Design', true) %>
 	</button>
 	<% unless logged_in? %>
