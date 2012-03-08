@@ -2,7 +2,7 @@ class CreateDesigns < ActiveRecord::Migration
   def self.up
     create_table :designs do |t|
       t.string :name
-      t.string :content
+      t.text :content
       t.integer :width
       t.integer :height
       t.integer :user_id

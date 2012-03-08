@@ -26,7 +26,7 @@ end %>
 <span class="span6">
 <a data-toggle="collapse" data-target="#content">
     Raw Design Content
-</a>
+</a> (Length: <%= @design.content.nil? ? 'nil' : @design.content.length  %>)
 <div id="content" class="collapse"><%= @design.content %></div>
 </span>
 <span class="span5">

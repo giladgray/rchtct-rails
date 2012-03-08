@@ -12,7 +12,7 @@
     <% for design in @designs %>
         <tr>
             <td><h3><%= link_to design.name, design %></h3></td>
-            <td><%= link_to design.user, design.user %></td>
+            <td><%= link_to design.user.username, design.user %></td>
             <td><%= design.width %>&times;<%= design.height %></td>
 	        <td><%= Time.at(design.created_at).strftime("%b %-d, %l:%M%P") %></td>
         </tr>

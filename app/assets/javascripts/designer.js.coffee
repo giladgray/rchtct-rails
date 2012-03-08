@@ -1,5 +1,5 @@
 #= require raphael-min
-#= require raphael.serialize
+
 width = 960
 height = 500
 grid = 20
@@ -45,6 +45,14 @@ Raphael.fn.drawGrid = (x, y, width, height, gridSize, color) ->
 	# create the path by joining all the little lines and give them some color.
 	# also set the data ignore attribute so we can exclude it from JSON
 	this.path(path.join(",")).attr({stroke: color}).data("ignore", "true")
+
+# returns an array of the elements in this paper
+Raphael.fn.listElements = (ignore = true) ->
+	list = []
+	`for(node = this.bottom; node != null; node = node.next) {
+		if(!node.data("ignore") || !ignore)	list.push(node)
+	};`
+	list
 
 # easy getter/setters for center coordinates of element
 Raphael.el.cx = (val) -> this.attr("cx", val)
@@ -131,7 +139,8 @@ class GraphPaper
 			@paper.drawGrid(0, 0, @width, @height, @gridSize, "#eee")
 $.fn.graphpaper = (width, height, gridSize, json) ->
 	paper = new GraphPaper(@attr("id"), width, height, gridSize)
-	paper.addJSON(json) if json?
+	#paper.addJSON(json) if json?
+	Raphael.fn.serialize.load_json(paper.paper, json, true) if json?
 	this.addClass("designer")
 
 ######################################
@@ -192,13 +201,15 @@ class Designer extends GraphPaper
 			when 27 then @line = null       # esc
 	# serialize the design and save it to the DB
 	save: ->
-		json_content = Raphael.fn.serialize.json(@paper)
+		json_content = Raphael.fn.serialize.json(@paper, true)
 		alert json_content
 		$("#save-btn").button('loading')
 		$.post "/designs/#{@id}/save", {design: {id: @id, name: @name, content: json_content}}, (data, msg) ->
 			log.comment "Save #{msg}!"
 			$("#save-btn").button('reset')
-	load: (contents) -> @addJSON(contents)
+	load: (contents) ->
+		log.comment("loading #{contents}")
+		Raphael.fn.serialize.load_json(@paper, contents, true)
 
 # the jquery plugin function! creates a designer object and attaches all the event listeners.
 # the designer object is stored in window.designer for easy access anywhere.
