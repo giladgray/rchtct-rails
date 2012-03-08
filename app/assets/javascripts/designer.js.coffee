@@ -1,5 +1,4 @@
 #= require raphael-min
-#= require raphael.graphpaper
 
 width = 960
 height = 500
