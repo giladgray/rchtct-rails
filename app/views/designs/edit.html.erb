@@ -1,14 +1,16 @@
 <% title @design.name %>
 
-<% content_for :icon do 'edit' end %>
+<% content_for :icon do
+  'edit'
+end %>
 
 <% content_for :page_header do %>
     <span class="pull-right">
 	    <a onclick="designer.save()" id="save-btn" data-loading-text="Saving..." class="btn btn-primary">
-		    <%= icon_text 'file', 'Save', true %>
+	        <%= icon_text 'file', 'Save', true %>
 	    </a>
-	    <%= link_to icon_text('ok', 'Done', true), @design, class: "btn btn-success" %>
-	    <!--<%= link_to icon_text('remove', 'Cancel', true), @design, class: "btn btn-warning" %>-->
+        <%= link_to icon_text('ok', 'Done', true), @design, class: "btn btn-success" %>
+        <!--<%= link_to icon_text('remove', 'Cancel', true), @design, class: "btn btn-warning" %>-->
         <a onclick="designer.clear()" class="btn">Clear Design</a>
       		<a onclick="log.clear()" class="btn">Clear Log</a>
 	</span>
@@ -27,4 +29,19 @@
 <span class="pull-right">
 	<ul id="log-list"></ul>
 </span>
+</div>
+<div class="row">
+    <div class="btn-toolbar span9">
+	    DRAG
+        <div class="btn-group" id="drawTools" data-toggle="buttons-radio">
+            <button class="btn active" data-type="line">line</button>
+        </div>
+		&nbsp;+&nbsp;SHIFT
+        <div class="btn-group" id="powerTools" data-toggle="buttons-radio">
+            <button class="btn active" data-type="rect">rect</button>
+	        <button class="btn" data-type="circle">circle</button>
+	        <button class="btn" data-type="ellipse">ellipse</button>
+	        <button class="btn" data-type="text">text</button>
+        </div>
+    </div>
 </div>

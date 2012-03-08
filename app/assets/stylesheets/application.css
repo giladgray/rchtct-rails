@@ -11,6 +11,27 @@
  *= require_self
  *= require_tree .
 */
+.form-navbar {
+	margin: 0 5px;
+}
+.navbar input {
+	margin-top: 5px;
+	margin-bottom: 0;
+}
+.navbar input[type="text"] {
+	background-color: #666666;
+	border-color: #222222;
+	color: white;
+}
+.navbar i { vertical-align: middle; }
+.navbar .exo {
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 18px;
+	/*padding: 2px 10px;*/
+}
+
+
 .container.body {
 	padding-top: 60px;
 }
@@ -33,7 +54,7 @@ ul#log-list {
 	font-family: 'Share', cursive ;
 	width: 210px;
 	font-size: 11px;
-	height: 500px;
+	max-height: 500px;
 	overflow-y: auto;
 }
 ul#log-list li:first-child {

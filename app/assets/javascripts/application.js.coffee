@@ -19,3 +19,10 @@
 window.setFont = (font) ->
 	$(".#{@font}").removeClass(@font).addClass(font)
 	@font = font
+
+$(document).ready ->
+	$("#drawTools button").click ->
+		log.comment "go do some #{$(this).attr("data-type")}s!"
+	$("#powerTools button").click ->
+		log.comment "now we're drawing #{$(this).attr("data-type")}s!"
+

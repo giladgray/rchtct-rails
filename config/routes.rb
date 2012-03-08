@@ -12,6 +12,7 @@ Rchtct::Application.routes.draw do
 	resources :users
 
 	resources :designs
+	match 'designer/:id' => 'designs#edit', :as => :designer
 	match 'designs/:id/save' => 'designs#update'
 
 	root to: "designs#index"

@@ -19,31 +19,48 @@
                 <li>
                     <a><i class="icon-<%= content_for?(:icon) ? yield(:icon) : 'list' %> icon-white"></i></a>
                 </li>
-            </ul>
-            <ul class="nav pull-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Font
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a onclick="setFont('wvr')">Default</a></li>
-                        <li><a onclick="setFont('exo')" style="font-family: 'Exo'">Exo</a></li>
-                        <li><a onclick="setFont('sonsie')" style="font-family: 'Sonsie One'">Sonsie One</a></li>
-                    </ul>
-                </li>
-                <li class="divider-vertical"></li>
-                <li><a><i class="icon-user icon-white"></i></a></li>
-                <% if logged_in? %>
-                    <li><%= link_to current_user.username, edit_current_user_path %></li>
-                    <li><%= link_to "Logout", logout_path %></li>
-                <% else %>
-                    <li><%= link_to "Sign Up", signup_path %></li>
-                    <li><%= link_to "Login", login_path %></li>
-                <% end %>
-            </ul>
-        </div>
-    </div>
+			</ul>
+			<ul class="nav pull-right">
+			    <% if logged_in? %>
+				<li class="divider-vertical"></li>
+				<li>
+				   <%= form_for(Design.new, html: {class: "form-navbar" }) do |f| %>
+				       <%= f.text_field :name, placeholder: "Design something", class: "input-medium" %>
+
+				       <%= f.number_field :width, value: 700, in: 100..700, step: 50, class: "collapse hide input-mini" %>
+				       <h2 class="collapse hide">&times;</h2>
+				       <%= f.number_field :height, value: 400, in: 100..1000, step: 50, class: "collapse hide input-mini" %>
+
+				       <button type="submit" id="submit" class="btn btn-primary exo">
+				           <%= icon_text('edit', 'new', true) %>
+				       </button>
+				   <% end %>
+				</li>
+		        <li class="divider-vertical"></li>
+			    <% end %>
+			    <li class="dropdown">
+			        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+			            Font
+			            <b class="caret"></b>
+			        </a>
+			        <ul class="dropdown-menu">
+			            <li><a onclick="setFont('wvr')">Default</a></li>
+			            <li><a onclick="setFont('exo')" style="font-family: 'Exo'">Exo</a></li>
+			            <li><a onclick="setFont('sonsie')" style="font-family: 'Sonsie One'">Sonsie One</a></li>
+			        </ul>
+			    </li>
+			    <li class="divider-vertical"></li>
+			    <li><a><i class="icon-user icon-white"></i></a></li>
+		    <% if logged_in? %>
+		        <li><%= link_to current_user.username, edit_current_user_path %></li>
+		        <li><%= link_to "Logout", logout_path %></li>
+		    <% else %>
+		        <li><%= link_to "Sign Up", signup_path %></li>
+		        <li><%= link_to "Login", login_path %></li>
+		    <% end %>
+			</ul>
+		</div>
+	</div>
 </div>
 <div class="container body">
     <% flash.each do |name, msg| %>

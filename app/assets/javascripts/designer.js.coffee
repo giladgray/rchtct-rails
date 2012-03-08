@@ -1,4 +1,5 @@
 #= require raphael-min
+#= require raphael.graphpaper
 
 width = 960
 height = 500
@@ -29,8 +30,6 @@ window.log =
 $.fn.logger = (tag = "li") ->
 	log.log = this
 	log.tag = tag
-# initialize the log when the document is ready
-$(document).ready -> $("ul#log-list").logger()
 
 # draws a square grid in the given color
 Raphael.fn.drawGrid = (x, y, width, height, gridSize, color) ->
@@ -86,7 +85,7 @@ class Line
 	finish: -> @start.remove(); @end.remove(); @valid = false
 
 # a line that automatically snaps to a given grid size
-class SnapLine extends Line
+class window.SnapLine extends Line
 	# constructor takes in snapsize, snaps start and end points
 	constructor: (paper, startX, startY, endX = startX, endY = startY, @snapSize = grid) ->
 		super paper, @snap(startX), @snap(startY), @snap(endX), @snap(endY)
@@ -217,4 +216,9 @@ $.fn.designer = (width, height, gridSize = 20, designName = null, designId = 1) 
 	des = new Designer(@attr("id"), designName, designId, width, height, gridSize)
 	window.designer = des
 	this.mousedown(des.mousedown).mouseup(des.mouseup).keydown(des.keydown)
+	# TODO: touch input
 	this.addClass("designer")
+
+
+# initialize the log when the document is ready
+$(document).ready -> $("ul#log-list").logger()
